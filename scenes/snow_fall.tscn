@@ -1,0 +1,24 @@
+[gd_scene load_steps=3 format=3 uid="uid://bpfec1w7rf752"]
+
+[ext_resource type="Script" path="res://scripts/snow_fall.gd" id="1_0fajs"]
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_gc1t5"]
+particle_flag_disable_z = true
+radial_velocity_min = 90.0
+radial_velocity_max = 91.0
+gravity = Vector3(0, 98, 0)
+scale_min = 2.0
+scale_max = 5.0
+
+[node name="SnowFall" type="Node2D"]
+script = ExtResource("1_0fajs")
+
+[node name="SnowParticles" type="GPUParticles2D" parent="."]
+position = Vector2(11, 0)
+emitting = false
+amount = 300
+process_material = SubResource("ParticleProcessMaterial_gc1t5")
+lifetime = 8.0
+speed_scale = 0.5
+randomness = 1.0
+fixed_fps = 0

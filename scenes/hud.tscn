@@ -1,0 +1,66 @@
+[gd_scene load_steps=3 format=3 uid="uid://c6n5ldlkgf3y6"]
+
+[ext_resource type="Script" path="res://scripts/hud.gd" id="1_7ucq6"]
+[ext_resource type="FontFile" uid="uid://b2qdpen5cg5gk" path="res://fonts/candy_cane/Candcu__.ttf" id="1_t3avd"]
+
+[node name="HUD" type="CanvasLayer"]
+script = ExtResource("1_7ucq6")
+
+[node name="Message" type="Label" parent="."]
+visible = false
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -310.5
+offset_top = 140.0
+offset_right = 310.5
+offset_bottom = 261.0
+grow_horizontal = 2
+theme_override_colors/font_color = Color(0.831373, 0, 0, 1)
+theme_override_fonts/font = ExtResource("1_t3avd")
+theme_override_font_sizes/font_size = 120
+text = "Get Ready"
+
+[node name="StartButton" type="Button" parent="."]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -173.5
+offset_top = -75.0
+offset_right = 173.5
+offset_bottom = 75.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(0, 0.713726, 0, 1)
+theme_override_colors/font_pressed_color = Color(0, 0.482353, 0, 1)
+theme_override_fonts/font = ExtResource("1_t3avd")
+theme_override_font_sizes/font_size = 120
+disabled = true
+text = "Start"
+
+[node name="Countdown" type="Label" parent="."]
+visible = false
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -36.0
+offset_top = -261.0
+offset_right = 36.0
+offset_bottom = -140.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_colors/font_color = Color(0.831373, 0, 0, 1)
+theme_override_fonts/font = ExtResource("1_t3avd")
+theme_override_font_sizes/font_size = 120
+text = "5"
+
+[node name="CountdownTimer" type="Timer" parent="."]
+
+[node name="RestartTimer" type="Timer" parent="."]
+
+[connection signal="pressed" from="StartButton" to="." method="_on_start_button_pressed"]
+[connection signal="timeout" from="RestartTimer" to="." method="_ready"]

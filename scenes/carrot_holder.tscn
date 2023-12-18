@@ -1,0 +1,13 @@
+[gd_scene load_steps=3 format=3 uid="uid://rbd4cu2xq83m"]
+
+[ext_resource type="Script" path="res://scripts/carrot_holder.gd" id="1_2e5n1"]
+[ext_resource type="PackedScene" uid="uid://cun1lrwfapo6g" path="res://scenes/carrot.tscn" id="2_488tb"]
+
+[node name="CarrotHolder" type="Node"]
+script = ExtResource("1_2e5n1")
+carrotScene = ExtResource("2_488tb")
+
+[node name="CarrotCooldown" type="Timer" parent="."]
+wait_time = 1.5
+
+[connection signal="timeout" from="CarrotCooldown" to="." method="_on_carrot_cooldown_timeout"]

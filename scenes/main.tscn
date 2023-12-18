@@ -1,0 +1,102 @@
+[gd_scene load_steps=10 format=3 uid="uid://ds0duqlrse3op"]
+
+[ext_resource type="Script" path="res://scripts/main.gd" id="1_qvf0g"]
+[ext_resource type="PackedScene" uid="uid://brkmsusvph0q1" path="res://scenes/player.tscn" id="1_rlscr"]
+[ext_resource type="PackedScene" uid="uid://cna3ppjxarafb" path="res://scenes/tree.tscn" id="2_j46e1"]
+[ext_resource type="PackedScene" uid="uid://rbd4cu2xq83m" path="res://scenes/carrot_holder.tscn" id="2_rv2oo"]
+[ext_resource type="PackedScene" uid="uid://btchgtgmmoorx" path="res://scenes/present.tscn" id="3_tfiru"]
+[ext_resource type="PackedScene" uid="uid://bpfec1w7rf752" path="res://scenes/snow_fall.tscn" id="4_i0vwo"]
+[ext_resource type="PackedScene" uid="uid://c6n5ldlkgf3y6" path="res://scenes/hud.tscn" id="5_64rmp"]
+[ext_resource type="Texture2D" uid="uid://dhuitikn01u8c" path="res://art/Background.png" id="8_jm8yk"]
+
+[sub_resource type="Curve2D" id="Curve2D_0bdf3"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, 0, 53, 0, 0, 0, 0, 1504, 53, 0, 0, 0, 0, 1504, 901, 0, 0, 0, 0, 0, 901, 0, 0, 0, 0, 0, 53)
+}
+point_count = 5
+
+[node name="Main" type="Node2D"]
+position = Vector2(0, -53)
+script = ExtResource("1_qvf0g")
+treeScene = ExtResource("2_j46e1")
+presentScene = ExtResource("3_tfiru")
+
+[node name="PresentPath" type="Path2D" parent="."]
+curve = SubResource("Curve2D_0bdf3")
+
+[node name="PresentSpawnLocation" type="PathFollow2D" parent="PresentPath"]
+position = Vector2(0, 53)
+
+[node name="PresentTimer" type="Timer" parent="."]
+
+[node name="CarrotHolder" parent="." instance=ExtResource("2_rv2oo")]
+
+[node name="StartPos" type="Marker2D" parent="."]
+position = Vector2(752, 485)
+
+[node name="TextureRect" type="TextureRect" parent="."]
+offset_top = 53.0
+offset_right = 1507.56
+offset_bottom = 901.0
+texture = ExtResource("8_jm8yk")
+expand_mode = 3
+
+[node name="Tree" parent="." instance=ExtResource("2_j46e1")]
+position = Vector2(479, 727)
+
+[node name="Tree2" parent="." instance=ExtResource("2_j46e1")]
+position = Vector2(809, 185)
+
+[node name="Tree3" parent="." instance=ExtResource("2_j46e1")]
+position = Vector2(188, 351)
+
+[node name="Tree4" parent="." instance=ExtResource("2_j46e1")]
+position = Vector2(1078, 410)
+
+[node name="Player" parent="." instance=ExtResource("1_rlscr")]
+position = Vector2(-152, -107)
+
+[node name="SnowFall" parent="." instance=ExtResource("4_i0vwo")]
+
+[node name="SnowFall2" parent="." instance=ExtResource("4_i0vwo")]
+position = Vector2(132, 1)
+
+[node name="SnowFall3" parent="." instance=ExtResource("4_i0vwo")]
+position = Vector2(267, -1)
+
+[node name="SnowFall4" parent="." instance=ExtResource("4_i0vwo")]
+position = Vector2(407, -1)
+
+[node name="SnowFall5" parent="." instance=ExtResource("4_i0vwo")]
+position = Vector2(557, 2)
+
+[node name="SnowFall6" parent="." instance=ExtResource("4_i0vwo")]
+position = Vector2(740, -1)
+
+[node name="SnowFall7" parent="." instance=ExtResource("4_i0vwo")]
+position = Vector2(875, 0)
+
+[node name="SnowFall8" parent="." instance=ExtResource("4_i0vwo")]
+position = Vector2(1031, -2)
+
+[node name="SnowFall9" parent="." instance=ExtResource("4_i0vwo")]
+position = Vector2(1196, -2)
+
+[node name="SnowFall10" parent="." instance=ExtResource("4_i0vwo")]
+position = Vector2(1372, -1)
+
+[node name="SnowFall11" parent="." instance=ExtResource("4_i0vwo")]
+position = Vector2(1497, 3)
+
+[node name="HUD" parent="." instance=ExtResource("5_64rmp")]
+
+[connection signal="timeout" from="PresentTimer" to="." method="_on_present_timer_timeout"]
+[connection signal="shotPresent" from="CarrotHolder" to="." method="_on_carrot_holder_shot_present"]
+[connection signal="area_entered" from="Tree" to="Player" method="_on_tree_area_entered"]
+[connection signal="area_entered" from="Tree2" to="Player" method="_on_tree_area_entered"]
+[connection signal="area_entered" from="Tree3" to="Player" method="_on_tree_area_entered"]
+[connection signal="area_entered" from="Tree4" to="Player" method="_on_tree_area_entered"]
+[connection signal="hit" from="Player" to="." method="gameOver"]
+[connection signal="shoot" from="Player" to="CarrotHolder" method="_on_player_shoot"]
+[connection signal="prepareGame" from="HUD" to="." method="prepareGame"]
+[connection signal="startGame" from="HUD" to="." method="startGame"]
